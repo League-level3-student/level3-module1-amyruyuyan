@@ -44,7 +44,7 @@ public class LongChipCompetition {
          	}
     }
     }
-         System.out.println(beatlesMember + "had the longest chip of " + longestChip);
+         System.out.println(beatlesMember + " had the longest chip of " + longestChip);
     }
     private void initializeBeatles() {
         Beatle george = new Beatle("George");
