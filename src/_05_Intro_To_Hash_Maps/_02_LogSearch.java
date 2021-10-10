@@ -1,7 +1,14 @@
 package _05_Intro_To_Hash_Maps;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class _02_LogSearch {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class _02_LogSearch implements ActionListener {
     /* 
      * Crate a HashMap of Integers for the keys and Strings for the values.
      * Create a GUI with three buttons. 
@@ -34,4 +41,40 @@ public class _02_LogSearch {
      *      user that the ID is not in the list. 
      */
 
+	public static void main(String[] args) {
+		
+	}
+	
+	HashMap<Integer, String> logSearch = new HashMap<Integer, String>();
+	
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
+	JButton addEntry = new JButton("add entry");
+	JButton searchByID = new JButton("search by ID");
+	JButton viewList = new JButton("view list");
+	JButton removeEntry = new JButton("");
+	
+	void setup() {
+	addEntry.addActionListener(this);
+	searchByID.addActionListener(this);
+	viewList.addActionListener(this);
+	removeEntry.addActionListener(this);
+	
+	frame.setSize(400, 400);
+	
+	panel.add(addEntry);
+	panel.add(searchByID);
+	panel.add(viewList);
+	panel.add(removeEntry);
+	
+	frame.add(panel);
+	frame.pack();
+	frame.isVisible();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
