@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class _02_LogSearch implements ActionListener {
@@ -42,7 +43,8 @@ public class _02_LogSearch implements ActionListener {
      */
 
 	public static void main(String[] args) {
-		
+		_02_LogSearch logSearch = new _02_LogSearch();
+		logSearch.setup();
 	}
 	
 	HashMap<Integer, String> logSearch = new HashMap<Integer, String>();
@@ -52,7 +54,7 @@ public class _02_LogSearch implements ActionListener {
 	JButton addEntry = new JButton("add entry");
 	JButton searchByID = new JButton("search by ID");
 	JButton viewList = new JButton("view list");
-	JButton removeEntry = new JButton("");
+	JButton removeEntry = new JButton("remove entry");
 	
 	void setup() {
 	addEntry.addActionListener(this);
@@ -69,12 +71,49 @@ public class _02_LogSearch implements ActionListener {
 	
 	frame.add(panel);
 	frame.pack();
-	frame.isVisible();
+	frame.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
-}
+		if (addEntry == e.getSource()) {
+			String entry = JOptionPane.showInputDialog("Enter an ID number:");
+			System.out.println(entry);
+			String name = JOptionPane.showInputDialog("Enter a name:");
+			System.out.println(name);
+		}
+		
+		if (searchByID == e.getSource()) {
+			String ID = JOptionPane.showInputDialog("Enter an ID number:");
+			if(logSearch.containsKey(Integer.parseInt(ID))) {
+				System.out.println("The name of this user is: ");
+				System.out.println(logSearch.get(Integer.parseInt(ID)));
+			}
+			else {
+				System.out.println("The ID entered does not exist");
+			}
+			}
+		
+		if (viewList == e.getSource()) {
+			for (Integer i : logSearch.keySet()) {
+				System.out.println("ID: " + i + " Name: " + logSearch.containsKey(i));
+			}
+		}
+		
+		if (removeEntry == e.getSource()) {
+			String remove = JOptionPane.showInputDialog("Enter an ID number:");
+			if(logSearch.containsKey(Integer.parseInt(remove))) {
+				logSearch.remove(remove);
+			}
+				else {
+					System.out.println("The ID entered does not exist");
+				}
+			}
+			
+		}
+		}
+		
+	
+
