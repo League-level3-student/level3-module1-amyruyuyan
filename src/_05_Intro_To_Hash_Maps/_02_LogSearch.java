@@ -83,6 +83,7 @@ public class _02_LogSearch implements ActionListener {
 			System.out.println(entry);
 			String name = JOptionPane.showInputDialog("Enter a name:");
 			System.out.println(name);
+			logSearch.put(Integer.parseInt(entry), name);
 		}
 		
 		if (searchByID == e.getSource()) {
@@ -98,14 +99,14 @@ public class _02_LogSearch implements ActionListener {
 		
 		if (viewList == e.getSource()) {
 			for (Integer i : logSearch.keySet()) {
-				System.out.println("ID: " + i + " Name: " + logSearch.containsKey(i));
+				System.out.println("ID: " + i + " Name: " + logSearch.get(i));
 			}
 		}
 		
 		if (removeEntry == e.getSource()) {
 			String remove = JOptionPane.showInputDialog("Enter an ID number:");
 			if(logSearch.containsKey(Integer.parseInt(remove))) {
-				logSearch.remove(remove);
+				logSearch.remove(Integer.parseInt(remove));
 			}
 				else {
 					System.out.println("The ID entered does not exist");
