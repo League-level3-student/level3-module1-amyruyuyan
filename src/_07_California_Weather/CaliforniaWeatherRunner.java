@@ -6,6 +6,7 @@ package _07_California_Weather;
 public class CaliforniaWeatherRunner {
     
     public static void main(String[] args) {
-        new CaliforniaWeather().start();
+    	new CaliforniaWeather().chooseMethod();
+        
     }
 }

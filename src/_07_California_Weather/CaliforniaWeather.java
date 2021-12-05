@@ -31,20 +31,54 @@ import javax.swing.JOptionPane;
 
 public class CaliforniaWeather {
     
-    void start() {
-        HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
-        
-        String cityName =JOptionPane.showInputDialog("Which city do you want to find weather of?");
+	HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+	
+	
+	void chooseMethod() {
+		String method = JOptionPane.showInputDialog("Would you like to search by city, weather condition, or temperature?");
+		if(method.equals("city")) {
+			new CaliforniaWeather().inputCity();
+		}
+		else if(method.equals("weather condition")) {
+			new CaliforniaWeather().inputCondition();
+		}
+	}
+	
+    void inputCity() {
+        String cityName = JOptionPane.showInputDialog("Which city do you want to find weather of?");
         
         // All city keys have the first letter capitalized of each word
         cityName = Utilities.capitalizeWords(cityName);
-        WeatherData datum = weatherData.get(cityName);
+        WeatherData data1 = weatherData.get(cityName);
         
-        if( datum == null ) {
+        if( data1 == null ) {
             System.out.println("Unable to find weather data for: " + cityName);
         } else {
-            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
+            System.out.println(cityName + " is " + data1.weatherSummary + " with a temperature of " + data1.temperatureF + " F");
         }
     }
     
-}
+    void inputCondition() {
+    	String weatherCondition = JOptionPane.showInputDialog("Input a weather condition to find cities with that current state:");
+    	weatherCondition = Utilities.capitalizeWords(weatherCondition);
+    	String cityConditions = ""; 
+    	
+    	for (String i: weatherData.keySet()) {
+    		if (weatherData.get(i).weatherSummary.contains(weatherCondition)) {
+    		cityConditions+=i + ", ";
+    		}
+    			}
+    	System.out.println("cities with weather condition: " + weatherCondition + " are " + cityConditions);
+    	}
+    
+    void searchByTemperature() {
+    	String minCityTemperature = JOptionPane.showInputDialog("Input the minimum temperature:");
+    	String maxCityTemperature = JOptionPane.showInputDialog("Input the maximum temperature:");
+    	String cityTemperatures = "";
+    	
+    	for
+    }
+
+    }
+    
+
