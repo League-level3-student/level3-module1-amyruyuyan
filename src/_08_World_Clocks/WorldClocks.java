@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -51,7 +52,7 @@ public class WorldClocks implements ActionListener {
         clockUtil = new ClockUtilities();
 
         // The format for the city must be: city, country (all caps)
-        city = "Chicago, US";
+        String city = JOptionPane.showInputDialog("Which city do you want to find the time of?");
         timeZone = clockUtil.getTimeZoneFromCityName(city);
         
         Calendar calendar = Calendar.getInstance(timeZone);
@@ -59,7 +60,13 @@ public class WorldClocks implements ActionListener {
         String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
         dateStr = dayOfWeek + " " + month + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.YEAR);
         
-        System.out.println(dateStr);
+        String hour = calendar.getDisplayName(Calendar.HOUR, Calendar.LONG, Locale.getDefault());
+        String minutes = calendar.getDisplayName(Calendar.MINUTE, Calendar.LONG, Locale.getDefault());
+        String seconds = calendar.getDisplayName(Calendar.SECOND, Calendar.LONG, Locale.getDefault());
+        timeStr = hour + "" + minutes + " " + seconds; 
+        
+        System.out.println(city + ": " + dateStr + " " + timeStr);
+        
 
         // Sample starter program
         frame = new JFrame();
@@ -77,7 +84,7 @@ public class WorldClocks implements ActionListener {
         timer = new Timer(1000, this);
         timer.start();
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent arg0) {
         Calendar c = Calendar.getInstance(timeZone);

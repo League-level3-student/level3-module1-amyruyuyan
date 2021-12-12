@@ -42,6 +42,9 @@ public class CaliforniaWeather {
 		else if(method.equals("weather condition")) {
 			new CaliforniaWeather().inputCondition();
 		}
+		else if(method.equals("temperature")) {
+			new CaliforniaWeather().searchByTemperature();
+		}
 	}
 	
     void inputCity() {
@@ -68,7 +71,7 @@ public class CaliforniaWeather {
     		cityConditions+=i + ", ";
     		}
     			}
-    	System.out.println("cities with weather condition: " + weatherCondition + " are " + cityConditions);
+    	System.out.println("cities w entith weather condition: " + weatherCondition + " are " + cityConditions);
     	}
     
     void searchByTemperature() {
@@ -76,7 +79,15 @@ public class CaliforniaWeather {
     	String maxCityTemperature = JOptionPane.showInputDialog("Input the maximum temperature:");
     	String cityTemperatures = "";
     	
-    	for
+    	Double minTemperature = Double.parseDouble(minCityTemperature);
+    	Double maxTemperature = Double.parseDouble(maxCityTemperature);
+    	
+    	for(String j: weatherData.keySet()) {
+    		if (weatherData.get(j).temperatureF >= minTemperature && weatherData.get(j).temperatureF <= maxTemperature) {
+    			cityTemperatures+=j + ", ";
+    		}
+    	}
+    	System.out.println("Cities with temperature range " + minCityTemperature + " - " + maxCityTemperature + " are: " + cityTemperatures);
     }
 
     }
